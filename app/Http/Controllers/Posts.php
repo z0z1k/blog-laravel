@@ -29,6 +29,6 @@ class Posts extends Controller
         $data = $request->only([ 'title', 'content' ]);
         Post::create($data);
 
-        return redirect('/posts');
+        return redirect()->route('posts.index');
     }
 }
