@@ -1,3 +1,4 @@
+<x-layouts.base title="Categories in trash">
 <h1>Categories in trash</h1>
 
 <table border="1" width="80%">
@@ -31,3 +32,4 @@
     @endforeach
     </tbody>
 </table>
+</x-layouts.base>

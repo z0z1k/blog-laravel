@@ -1,3 +1,4 @@
+<x-layouts.base title="{{ $category->title }}">
 <h1> {{ $category->title }} </h1>
 <a href="{{ route('categories.index') }} ">Back</a>
 <hr>
@@ -11,3 +12,4 @@
     @method('DELETE')
     <button>Delete category</button>
 </form>
+</x-layouts.base>

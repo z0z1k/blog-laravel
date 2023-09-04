@@ -1,14 +1,17 @@
+<x-layouts.base title="Create category">
+<h1>Create catogory</h1>
 <form method="post" action="{{ route('categories.store') }}">
     @csrf
-    <div>
-        Slug----------<input type="text" name="slug" value="{{ old('slug') }}">
-        @error('slug')
-        <div>
-            {{ $message }}
-        </div>
-        @enderror
+
+    <div class="mb-3">
+        <x-controls.input name="slug" label="Short url" />
     </div>
-    Title----------<input type="text" name="title" value="{{ old('title') }}"><br>
+
+    <div class="mb-3">
+        <x-controls.input name="title" label="Title" />
+    </div>
+    
     Description: <textarea name="description" id="" cols="30" rows="10">{{ old('description') }}</textarea><br>
-    <button>Add category</button>
+    <button class="btn btn-primary">Add category</button>
 </form>
+</x-layouts.base>

@@ -33,6 +33,7 @@ class CategoriesAdmin extends Controller
     {
         $request->validate([
             'slug' => 'required|min:8|max:128|unique:categories',
+            'title' => 'required|min:8|max:128|unique:categories',
         ]);
         $data = $request->only([ 'slug', 'title', 'description' ]);
         Category::create($data);

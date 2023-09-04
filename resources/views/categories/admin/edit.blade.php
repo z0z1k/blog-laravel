@@ -1,3 +1,4 @@
+<x-layouts.base title="Edit category {{ $category->title }}">
 <form method="post" action="{{ route('categories.update', $category->id) }}">
     @csrf
     @method('PUT')
@@ -13,3 +14,4 @@
     Description: <textarea name="description" id="" cols="30" rows="10">{{ $category->description }}</textarea><br>
     <button>Edit category</button>
 </form>
+</x-layouts.base>
