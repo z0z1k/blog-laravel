@@ -1,3 +1,4 @@
+<x-layouts.base title="Blog">
 <h1>Blog</h1>
 <a href="{{route('posts.create')}}">Add post</a>
 <hr>
@@ -7,3 +8,4 @@
     <em>{{ $post->created_at }}</em>
     <hr>
 @endforeach
+</x-layouts.base>

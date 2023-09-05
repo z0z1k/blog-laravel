@@ -19,9 +19,15 @@
 
     <div>
         <div class="container">
-            <main>
-                {{ $slot }}
-            </main>
+            <div class="row">
+                <div class="col col-12 col-md-3">
+                    menu
+                    <a href="{{ route('home') }}">home</a>
+                </div>
+                <main class="col col-12 col-md-9">
+                    {{ $slot }}
+                </main>
+            </div>
         </div>
     </div>
 

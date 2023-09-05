@@ -23,7 +23,7 @@ class CategoriesAdmin extends Controller
      */
     public function create()
     {
-        return view('categories.admin.create');
+        return view('categories.admin.create', [ 'category' => []]);
     }
 
     /**
@@ -64,7 +64,8 @@ class CategoriesAdmin extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'slug' => "required|min:8|max:128|unique:categories,slug,$id",
+            'slug' => 'required|min:8|max:128|unique:categories',
+            'title' => 'required|min:8|max:128|unique:categories',
         ]);
         $category = Category::findOrFail($id);
         $data = $request->only(['slug', 'title', 'description']);
