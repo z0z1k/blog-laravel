@@ -11,7 +11,7 @@ class Categories extends Controller
 {
     public function index()
     {
-        return 'home';
+        return view('categories.index');
     }
 
     public function show($slug)

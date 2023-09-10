@@ -8,3 +8,13 @@
     </div>
     
     Description: <textarea name="description" id="" cols="30" rows="10">{{ old('description') }}</textarea><br>
+
+    <x-controls.select
+        label='Select value'
+        name="some"
+        :options="[
+            '1' => 'a',
+            '2' => 'b',
+            '3' => 'c',
+        ]"
+    />

@@ -10,6 +10,4 @@
         <em>{{ $category->created_at }}</em>
         <hr>
     @endforeach
-</body>
-</html>
 </x-layouts.base>
