@@ -25,6 +25,7 @@
                         <li><x-navs.link route="home">Home</x-navs.link></li>
                         <li><x-navs.link route="categories.index">Categories</x-navs.link></li>
                         <li><x-navs.link route="categories.trash">Trash</x-navs.link></li>
+                        <li><x-navs.link route="posts.index">Posts</x-navs.link></li>
                     </ul>
                 </div>
                 <main class="col col-12 col-md-9">

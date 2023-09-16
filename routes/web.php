@@ -5,20 +5,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Posts as PostsC;
 use App\Http\Controllers\CategoriesAdmin as CategoriesAdminC;
 use App\Http\Controllers\Categories as CategoriesC;
+use App\Http\Controllers\CommentsAdmin as CommentsAdminC;
 
+Route::post('/posts/{id}/comment', [ PostsC::class, 'comment'])->name('posts.comment');
 Route::resource('posts', PostsC::class)->parameters(['posts' => 'id']);
-Route::get('/posts/create', [ PostsC::class, 'create' ])->name('posts.create');
-Route::get('/posts/{id}', [ PostsC::class, 'show'])->name('posts.show.{id}');
-Route::post('/posts', [ PostsC::class, 'store'])->name('posts.store');
 
 //middleware
 Route::controller(CategoriesAdminC::class)->group(function(){
     Route::get('categories/trash', 'trashList')->name('categories.trash');
-    Route::put('categories/{category}/restore', 'restore')->whereNumber(['category'])->name('categories.restore');
-    Route::delete('categories/{category}/destroy', 'destroyForever')->whereNumber(['category'])->name('categories.remove');
+    Route::put('categories/{id}/restore', 'restore')->name('categories.restore');
+    Route::delete('categories/{id}/destroy', 'destroyForever')->name('categories.remove');
 });
-Route::resource('categories', CategoriesAdminC::class)->whereNumber(['category']);
+Route::resource('categories', CategoriesAdminC::class)->parameters(['categories' => 'id']);
 
 
 Route::get('/', [ CategoriesC::class, 'index' ])->name('home');
 Route::get('/category/{slug}', [CategoriesC::class, 'show'])->name('category');
+
+Route::resource('comments', CommentsAdminC::class)->parameters(['comments' => 'id']);

@@ -1,7 +1,10 @@
 <x-layouts.base title="Posts in {{ $category->title }}">
 
-{{ $category->slug }}
-//category
-//posts in this category
+<h1>{{ $category->title }}</h1>
+
+@foreach($category->posts as $post)
+    {{ $post->title }}
+    <hr>
+@endforeach
     
 </x-layouts.base>

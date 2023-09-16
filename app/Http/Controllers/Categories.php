@@ -11,7 +11,8 @@ class Categories extends Controller
 {
     public function index()
     {
-        return view('categories.index');
+        $category = Category::all();
+        return view('categories.index', compact('category'));
     }
 
     public function show($slug)
