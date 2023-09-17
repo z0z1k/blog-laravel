@@ -18,4 +18,9 @@ class Post extends Model
         'status' => Status::class,
         'options' => Base64Json::class,
     ];
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'comentable');
+    }
 }
