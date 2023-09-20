@@ -1,5 +1,4 @@
 <x-layouts.base title="{{ $post->title }}">
-<h1> {{ $post->title }} </h1>
 <a href="{{ route('posts.index') }}">Back</a>
 <hr>
 <em>{{ $post->created_at }} </em>
@@ -18,6 +17,7 @@
 @foreach($post->comments as $comment)
     <div class="alert alert-success">
         {{ $comment->text }}
+        <a href="{{ route('comments.edit', [ $comment->id ]) }}">Edit</a>
     </div>
 @endforeach
 </x-layouts.base>

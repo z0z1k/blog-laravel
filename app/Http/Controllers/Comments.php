@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 use App\Http\Requests\Comments\Add as AddRequest;
+use App\Http\Requests\Comments\Update as UpdateRequest;
 
 use App\Models\Post;
 use App\Models\Video;
+use App\Models\Comment;
 
 class Comments extends Controller
 {
     const FOR_MODELS = [
         'post' => Post::class,
         'video' => Video::class,
+    ];
+
+    const MODELS_REDIRECT = [
+        Post::class => 'posts.show',
+        Video::class => '',
     ];
 
     /**
@@ -42,6 +48,8 @@ class Comments extends Controller
         $model = $modelName::findOrFail($request->id);
 
         $model->comments()->create($request->only(['text']));
+
+        return redirect()->back();
     }
 
     /**
@@ -57,15 +65,19 @@ class Comments extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        return view('comments.edit', compact('comment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $comment->update($request->validated());
+        session()->flash('notification', 'comments.updated');
+        return redirect()->route('posts.show', [ $comment->comentable_id ]);
     }
 
     /**
