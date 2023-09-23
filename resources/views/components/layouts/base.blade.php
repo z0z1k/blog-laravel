@@ -23,13 +23,23 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-12 col-md-3">
-                        
+                        <ul class="nav nav-pills flex-column mb-auto">
+                            <li>
+                                <a href="{{ route('home') }}" class="nav-link link-dark">Home page</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('posts.index') }}" class="nav-link link-dark">Posts</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('videos.index') }}" class="nav-link link-dark">Videos</a>
+                            </li>
+                        </ul>
                     </div>
-                    <main class="col col-12 col-md-9">
+                    <div class="col col-12 col-md-9">
                         <x-notifications />
                         <h1 class="h3 mb-4">{{ $title }}</h1>
                         {{ $slot }}
-                    </main>
+                    </div>
                 </div>
             </div>
         </main>

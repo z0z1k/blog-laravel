@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Video\Save as SaveRequest;
+use App\Http\Requests\Videos\Save as SaveRequest;
 
 use App\Models\Video;
-use App\Enums\Video\Status as PostStatus;
 
-class Posts extends Controller
+class Videos extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('videos.index', [ 'videos' => Video::all() ]);
     }
 
     /**
