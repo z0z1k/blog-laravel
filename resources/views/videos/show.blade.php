@@ -8,18 +8,9 @@
     </iframe>
 <a href="{{ route('videos.edit', [ $video->id ]) }}">Edit</a>
 
-<x-form action="{{ route('comments.store') }}" method="post">
-    <input type="hidden" name="for" value="video">
-    <input type="hidden" name="id" value="{{ $video->id }}">
-    <x-form-textarea name="text" />
-    <button>Send</button>
-</x-form>
+<x-comments.form for="video" :id="$video->id" />
+<x-comments.list :comments="$video->comments" />
 <hr>
 
-@foreach($video->comments as $comment)
-    <div class="alert alert-success">
-        {{ $comment->text }}
-        <a href="{{ route('comments.edit', [ $comment->id ]) }}">Edit</a>
-    </div>
-@endforeach
+
 </x-layouts.base>

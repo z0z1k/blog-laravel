@@ -6,18 +6,9 @@
 
 <a href="{{ route('posts.edit', [ $post->id ]) }}">Edit</a>
 
-<x-form action="{{ route('comments.store') }}" method="post">
-    <input type="hidden" name="for" value="post">
-    <input type="hidden" name="id" value="{{ $post->id }}">
-    <x-form-textarea name="text" />
-    <button>Send</button>
-</x-form>
+<x-comments.form for="post" :id="$post->id" />
+
 <hr>
 
-@foreach($post->comments as $comment)
-    <div class="alert alert-success">
-        {{ $comment->text }}
-        <a href="{{ route('comments.edit', [ $comment->id ]) }}">Edit</a>
-    </div>
-@endforeach
+<x-comments.list :comments="$post->comments" />
 </x-layouts.base>

@@ -23,7 +23,8 @@ class Save extends FormRequest
     {
         return [
             'title' => 'required|min:10|max:256',
-            'content'=> 'required|max:256'
+            'content'=> 'required|max:256',
+            'tags' => 'required|array|min:2'
         ];
     }
 
@@ -31,7 +32,8 @@ class Save extends FormRequest
     {
         return [
             'title' => 'title',
-            'content' => 'text'
+            'content' => 'text',
+            'tags' => 'tags list'
         ];
     }
 

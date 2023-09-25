@@ -3,9 +3,9 @@
 </div>
 
 <div class="mb-3">
-    <x-form-textarea name="content" label="Content" />
+    <x-form-textarea name="url" label="Url" />
 </div>
 
 <div class="mb-3">
-    <x-form-select name="tags[]" label="Tags" :options="$tags" multiple />
+    <x-form-textarea name="description" label="Description" />
 </div>

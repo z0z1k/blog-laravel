@@ -28,6 +28,9 @@
                                 <a href="{{ route('home') }}" class="nav-link link-dark">Home page</a>
                             </li>
                             <li>
+                                <a href="{{ route('tags.index') }}" class="nav-link link-dark">Tags</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('posts.index') }}" class="nav-link link-dark">Posts</a>
                             </li>
                             <li>

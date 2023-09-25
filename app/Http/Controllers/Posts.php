@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Posts\Save as SaveRequest;
 
 use App\Models\Post;
+use App\Models\Tag;
 use App\Enums\Post\Status as PostStatus;
 
 class Posts extends Controller
@@ -15,7 +16,10 @@ class Posts extends Controller
      */
     public function index()
     {
-        return view('posts.index', [ 'posts' => Post::all() ]);
+        return view('posts.index', [
+            'posts' => Post::withCount('comments')->orderByDesc('created_at')->get(),
+            'tags' => Tag::orderbyDesc('title')->pluck('title'),
+        ]);
     }
 
     /**
@@ -23,7 +27,9 @@ class Posts extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', [
+            'tags' => Tag::orderByDesc('title')->pluck('title')
+        ]);
     }
 
     /**
@@ -33,6 +39,7 @@ class Posts extends Controller
     {
         $data = $request->validated();
         $post = Post::create($data);
+        $post->tags()->sync($data['tags']);
         return redirect()->route('posts.show', [ $post->id ]);
     }
 

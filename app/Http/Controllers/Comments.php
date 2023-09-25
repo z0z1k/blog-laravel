@@ -20,7 +20,7 @@ class Comments extends Controller
 
     const MODELS_REDIRECT = [
         Post::class => 'posts.show',
-        Video::class => '',
+        Video::class => 'videos.show',
     ];
 
     /**
@@ -77,7 +77,10 @@ class Comments extends Controller
         $comment = Comment::findOrFail($id);
         $comment->update($request->validated());
         session()->flash('notification', 'comments.updated');
-        return redirect()->route('posts.show', [ $comment->comentable_id ]);
+        return redirect()->route(
+            self::MODELS_REDIRECT[$comment->comentable_type],
+            [ $comment->comentable_id ]
+        );
     }
 
     /**
