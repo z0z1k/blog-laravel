@@ -5,7 +5,7 @@ namespace App\Http\Requests\Tags;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class Save extends FormRequest
+class Store extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,13 +28,13 @@ class Save extends FormRequest
                 'required',
                 'min:4',
                 'max:64',
-                Rule::unique('tags')
+                $this->makeUniqueRule(),
             ],
             'title' => [
                 'required',
                 'min:4',
                 'max:64',
-                Rule::unique('tags')
+                $this->makeUniqueRule(),
             ],
             'description'=> 'nullable|min:4'
         ];
@@ -47,5 +47,10 @@ class Save extends FormRequest
             'title' => 'name of tag',
             'description' => 'tag description'
         ];
+    }
+
+    protected function makeUniqueRule()
+    {
+        return Rule::unique('tags');
     }
 }

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Tags\Save as SaveRequest;
+use App\Http\Requests\Tags\Store as StoreRequest;
+use App\Http\Requests\Tags\Update as UpdateRequest;
 
 use App\Models\Tag;
 
@@ -28,7 +29,7 @@ class Tags extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SaveRequest $request)
+    public function store(StoreRequest $request)
     {
         $data = $request->validated();
         $tag = Tag::create($data);
@@ -56,7 +57,7 @@ class Tags extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SaveRequest $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
         $data = $request->validated();
         $tag = Tag::findOrFail($id);

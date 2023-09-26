@@ -18,7 +18,7 @@ class Posts extends Controller
     {
         return view('posts.index', [
             'posts' => Post::withCount('comments')->orderByDesc('created_at')->get(),
-            'tags' => Tag::orderbyDesc('title')->pluck('title'),
+            'tags' => Tag::orderbyDesc('title')->pluck('title', 'id'),
         ]);
     }
 
@@ -28,7 +28,7 @@ class Posts extends Controller
     public function create()
     {
         return view('posts.create', [
-            'tags' => Tag::orderByDesc('title')->pluck('title')
+            'tags' => Tag::orderByDesc('title')->pluck('title', 'id')
         ]);
     }
 
@@ -39,7 +39,11 @@ class Posts extends Controller
     {
         $data = $request->validated();
         $post = Post::create($data);
-        $post->tags()->sync($data['tags']);
+        try{
+            $post->tags()->sync($data['tags']);
+        }catch(\Throwable $e){
+            session()->flash('notification', 'posts.tags.sync');
+        }
         return redirect()->route('posts.show', [ $post->id ]);
     }
 
@@ -58,7 +62,8 @@ class Posts extends Controller
     public function edit(string $id)
     {
         $post = Post::findOrFail($id);
-        return view('posts.edit', compact('post'));
+        $tags = Tag::orderByDesc('title')->pluck('title', 'id');
+        return view('posts.edit', compact('post', 'tags'));
     }
 
     /**

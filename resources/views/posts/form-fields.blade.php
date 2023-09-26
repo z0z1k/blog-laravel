@@ -7,5 +7,5 @@
 </div>
 
 <div class="mb-3">
-    <x-form-select name="tags[]" label="Tags" :options="$tags" multiple />
+    <x-form-select name="tags[]" label="Tags" :options="$tags" multiple many-relation/>
 </div>
