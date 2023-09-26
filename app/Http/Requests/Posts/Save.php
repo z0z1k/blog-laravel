@@ -25,6 +25,7 @@ class Save extends FormRequest
             'title' => 'required|min:10|max:256',
             'content'=> 'required|max:256',
             'tags' => 'required|array|min:2',
+            'tags.*' => 'exists:tags,id'
         ];
     }
 
