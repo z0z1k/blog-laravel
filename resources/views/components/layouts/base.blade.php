@@ -15,7 +15,13 @@
         <header class="header">
             <div class="container">
                 HEADER
-                <a href="{{ route('login') }}">Login</a>
+
+                @auth
+                    <a href="{{ route('login.exit') }}">Logout</a>
+                @else
+                    <a href="{{ route('login') }}">Login</a>
+                @endif
+                
                 <hr>
             </div>
         </header>
@@ -24,6 +30,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-12 col-md-3">
+                        @auth
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li>
                                 <a href="{{ route('home') }}" class="nav-link link-dark">Home page</a>
@@ -38,6 +45,9 @@
                                 <a href="{{ route('videos.index') }}" class="nav-link link-dark">Videos</a>
                             </li>
                         </ul>
+                        @else
+                        a
+                        @endif
                     </div>
                     <div class="col col-12 col-md-9">
                         <x-notifications />
