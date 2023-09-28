@@ -15,6 +15,7 @@
         <header class="header">
             <div class="container">
                 HEADER
+                <a href="{{ route('login') }}">Login</a>
                 <hr>
             </div>
         </header>
