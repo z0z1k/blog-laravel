@@ -13,17 +13,21 @@ use App\Http\Controllers\Auth\Session;
 
 Route::get('/', function(){return 'home';})->name('home');
 
-Route::middleware('auth')->prefix('admin')->group(function(){
+Route::middleware('auth', 'verified')->prefix('admin')->group(function(){
     Route::resource('posts', PostsC::class)->parameters(['posts' => 'id']);
     Route::resource('videos', VideosC::class)->parameters(['videos' => 'id']);
     Route::resource('comments', CommentsC::class)->parameters(['comments' => 'id']);
     Route::resource('tags', TagsC::class)->parameters(['tags' => 'id']);
 
-    Route::controller(ProfilePassword::class)->prefix('profile')->group(function(){
+    Route::controller(ProfilePassword::class)->withoutMiddleware('verified')->prefix('profile')->group(function(){
         Route::get('/password', 'edit')->name('profile.password.edit');
         Route::put('/password', 'update')->name('profile.password.update');
     });
 });
+
+Route::get('/static/verify-email', function(){
+    return 'please verify email';
+})->name('verification.notice');
 
 Route::controller(Blog::class)->group(function(){
     Route::get('/tag/{url}', 'tag')->name('blog.tag');

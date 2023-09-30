@@ -9,4 +9,8 @@ return [
         'type' => 'danger',
         'text' => "Can't add all tags"
     ],
+    'password.changed' => [
+        'type' => 'success',
+        'text' => 'Password changed'
+    ]
 ];

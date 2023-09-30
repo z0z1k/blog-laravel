@@ -55,6 +55,11 @@
                         </ul>
                     </div>
                     <div class="col col-12 col-md-9">
+                        @if(!auth()->user()->email_verified_at)
+                            <div class="alert alert-danger">
+                                Verify email please
+                            </div>
+                        @endif
                         <x-notifications />
                         <h1 class="h3 mb-4">{{ $title }}</h1>
                         {{ $slot }}
