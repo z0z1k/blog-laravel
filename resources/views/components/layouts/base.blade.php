@@ -30,8 +30,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-12 col-md-3">
-                        @auth
-                        <ul class="nav nav-pills flex-column mb-auto">
+                        <ul class="nav nav-pills flex-column mb-auto">    
+                        @auth                        
                             <li>
                                 <a href="{{ route('home') }}" class="nav-link link-dark">Home page</a>
                             </li>
@@ -44,10 +44,15 @@
                             <li>
                                 <a href="{{ route('videos.index') }}" class="nav-link link-dark">Videos</a>
                             </li>
-                        </ul>
+                            <li>
+                                <a href="{{ route('profile.password.edit') }}" class="nav-link link-dark">Change password</a>
+                            </li>                        
                         @else
-                        a
+                            <li>
+                                <a href="{{ '/' }}" class="nav-link link-dark">Blog</a>
+                            </li> 
                         @endif
+                        </ul>
                     </div>
                     <div class="col col-12 col-md-9">
                         <x-notifications />
