@@ -46,7 +46,10 @@
                             </li>
                             <li>
                                 <a href="{{ route('profile.password.edit') }}" class="nav-link link-dark">Change password</a>
-                            </li>                        
+                            </li>
+                            <li>
+                                <a href="{{ route('users.index') }}" class="nav-link link-dark">Users</a>
+                            </li>                           
                         @else
                             <li>
                                 <a href="{{ '/' }}" class="nav-link link-dark">Blog</a>
